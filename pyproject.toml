@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "openclaw-social-arb"
+version = "0.1.0"
+description = "Social Arbitrage Sub-Agent for OpenClaw — detects emerging social trends before they're priced in"
+requires-python = ">=3.11"
+license = {text = "MIT"}
+dependencies = [
+    "praw>=7.7",
+    "pytrends>=4.9",
+    "tweepy>=4.14",
+    "httpx>=0.25",
+    "newsapi-python>=0.2.7",
+    "feedparser>=6.0",
+    "transformers>=4.35",
+    "torch>=2.1",
+    "pydantic>=2.5",
+    "scikit-learn>=1.3",
+    "scipy>=1.11",
+    "aiohttp>=3.9",
+    "python-dotenv>=1.0",
+    "rich>=13.7",
+    "numpy>=1.26",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4",
+    "pytest-asyncio>=0.23",
+    "ruff>=0.1",
+]
+
+[project.scripts]
+social-arb = "openclaw.social_arb.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["openclaw*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
