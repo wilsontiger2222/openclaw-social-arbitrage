@@ -147,6 +147,9 @@ class OnchainCollector:
                 continue
 
             # Get baseline (cached after first fetch)
+            # Small delay between history calls to avoid CoinGecko rate limits
+            if coin_id not in self._volume_baselines:
+                await asyncio.sleep(1.5)
             baseline = await self._compute_volume_baseline(coin_id)
             if baseline <= 0:
                 continue

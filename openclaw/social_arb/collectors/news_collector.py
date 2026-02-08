@@ -104,7 +104,7 @@ class NewsCollector:
         """Parse an RSS feed and return articles as dicts."""
         articles: list[dict[str, Any]] = []
         try:
-            async with httpx.AsyncClient(timeout=15) as client:
+            async with httpx.AsyncClient(timeout=15, follow_redirects=True) as client:
                 resp = await client.get(feed["url"])
                 resp.raise_for_status()
 
