@@ -15,6 +15,24 @@ Collect → Detect Anomalies → Filter Bots → Analyze Sentiment → Cross-Val
 - **News** — NewsAPI + RSS feed aggregation from Reuters, CNBC, MarketWatch
 - **On-chain** — CoinGecko-based volume spike and whale activity detection
 
+### Optional OpenClaw Twitter/X Source
+
+For OpenClaw agents that need a managed X/Twitter data path before this
+pipeline scores a signal, [TweetClaw](https://github.com/Xquik-dev/tweetclaw)
+is an OpenClaw plugin for structured Xquik calls:
+
+```bash
+openclaw plugins install @xquik/tweetclaw
+openclaw config set tools.alsoAllow '["explore", "tweetclaw"]'
+```
+
+Use it to search tweets, search tweet replies, export followers, look up users,
+download media, monitor tweets, deliver webhooks, and run approval-reviewed post
+or reply actions. TweetClaw does not replace this project's anomaly detection,
+sentiment, bot filtering, cross-validation, or human review step. Treat its
+results as one more X/Twitter source that this pipeline can validate against
+Reddit, Google Trends, news, and on-chain data.
+
 ### Analysis Pipeline
 - **Anomaly Detection** — Z-score against EWMA rolling baselines + velocity detection
 - **Sentiment Analysis** — FinBERT (local, zero API cost) with OpenAI fallback
